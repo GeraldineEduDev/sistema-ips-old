@@ -11,11 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('eps', function (Blueprint $table) {
+        Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('direccion');
+            $table->string('nombres');
+            $table->string('apellidos');
+            $table->string('tipo_documento');
+            $table->string('documento');
+            $table->string('email');
             $table->string('telefono');
+            $table->string('password');
+            $table->foreignId('rol_id')->constrained('roles','id');
             $table->timestamps();
         });
     }
@@ -25,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('eps');
+        Schema::dropIfExists('usuarios');
     }
 };
